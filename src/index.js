@@ -38,10 +38,14 @@ const Book = ({ image, author, title }) => {
 
 
 const names = ['john', 'peter', 'susan']
+const newNames = names.map((name) => {
+  return <h3>{name}</h3>
+})
+console.log(newNames);
 function BookList() {
   return (
     <>
-      <div>{names}</div>
+      <div>{newNames}</div>
     </>
   );
 }
