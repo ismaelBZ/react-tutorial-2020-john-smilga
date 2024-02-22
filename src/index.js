@@ -25,21 +25,25 @@ const secondBook = {
 }
 
 
-const Book = (props) => {
+const Book = ({image, author, title, children}) => {
   return (
     <article>
-      <Image src={props.img} />
-      <Title>{props.title}</Title>
-      <Author>{props.author}</Author>
+      <Image src={image} />
+      <Title>{title}</Title>
+      <Author>{author}</Author>
+      {children}
     </article>
   );
 };
 
+
 function BookList() {
   return (
     <>
-      <Book img={firstBook.imageURL} author={firstBook.author} title={firstBook.title} />
-      <Book img={secondBook.imageURL} author={secondBook.author} title={secondBook.title} />
+      <Book image={firstBook.imageURL} author={firstBook.author} title={firstBook.title}>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed quae aperiam nulla velit alias excepturi veritatis placeat suscipit animi minus!</p>      
+      </Book>
+      <Book image={secondBook.imageURL} author={secondBook.author} title={secondBook.title} />
     </>
   );
 }
