@@ -12,18 +12,25 @@ const Title = styled.h1`
 
 const Image = styled.img``;
 
-const title = "Wish: O Poder Dos Desejos";
-const author = "Tea Orsi, Dante Luiz";
-const image = "https://m.media-amazon.com/images/I/418M2tXcVjL.AC_SX250.jpg";
+const firstBook = {
+  imageURL: "https://m.media-amazon.com/images/I/61p8sBPV5LL._SY342_.jpg",
+  title: "A tartaruguinha",
+  author: "Tia Cris"
+}
+
+const secondBook = {
+  imageURL: "https://m.media-amazon.com/images/I/418M2tXcVjL.AC_SX250.jpg",
+  title: "Wish: o poder dos desejos",
+  author: "Tea Orsi" 
+}
+
 
 const Book = (props) => {
   return (
     <article>
-      <Image src={image} />
-      <Title>{title}</Title>
-      <Author>{author}</Author>
-      <p>{props.editora}</p>
-      <p>{props.ano}</p>
+      <Image src={props.img} />
+      <Title>{props.title}</Title>
+      <Author>{props.author}</Author>
     </article>
   );
 };
@@ -31,8 +38,8 @@ const Book = (props) => {
 function BookList() {
   return (
     <>
-      <Book editora="maio" ano={2022} />
-      <Book editora="abril" />
+      <Book img={firstBook.imageURL} author={firstBook.author} title={firstBook.title} />
+      <Book img={secondBook.imageURL} author={secondBook.author} title={secondBook.title} />
     </>
   );
 }
