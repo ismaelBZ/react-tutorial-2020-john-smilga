@@ -36,10 +36,12 @@ const Book = ({ image, author, title }) => {
   );
 };
 
+
+const names = ['john', 'peter', 'susan']
 function BookList() {
   return (
     <>
-      <div>{books}</div>
+      <div>{names}</div>
     </>
   );
 }
