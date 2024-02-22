@@ -45,9 +45,18 @@ console.log(newNames);
 function BookList() {
   return (
     <>
-      <div>{newNames}</div>
+     {books.map(({imageURL, title, author}) => {
+      return (
+        <Book image={imageURL} 
+              title={title} 
+              author={author} 
+        />
+      )
+     })}
     </>
   );
 }
 
 ReactDOM.render(<BookList />, document.getElementById("root"));
+
+
