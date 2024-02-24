@@ -14,43 +14,38 @@ const Image = styled.img``;
 
 const books = [
   {
+    id: 1,
     imageURL: "https://m.media-amazon.com/images/I/61p8sBPV5LL._SY342_.jpg",
     title: "A tartaruguinha",
     author: "Tia Cris",
   },
 
   {
+    id: 2,
     imageURL: "https://m.media-amazon.com/images/I/418M2tXcVjL.AC_SX250.jpg",
     title: "Wish: o poder dos desejos",
     author: "Tea Orsi",
   }
 ]
 
-const Book = ({ image, author, title }) => {
+const Book = (props) => {
+  console.log(props)
+  const { imageURL, author, title} = props.popcorn;
   return (
     <article>
-      <Image src={image} />
+      <Image src={imageURL} />
       <Title>{title}</Title>
       <Author>{author}</Author>
     </article>
   );
 };
 
-
-const names = ['john', 'peter', 'susan']
-const newNames = names.map((name) => {
-  return <h3>{name}</h3>
-})
-console.log(newNames);
 function BookList() {
   return (
     <>
-     {books.map(({imageURL, title, author}) => {
+     {books.map((book) => {
       return (
-        <Book image={imageURL} 
-              title={title} 
-              author={author} 
-        />
+        <Book key={book.id} popcorn={book}/>
       )
      })}
     </>
