@@ -28,9 +28,7 @@ const books = [
   }
 ]
 
-const Book = (props) => {
-  console.log(props)
-  const { imageURL, author, title} = props;
+const Book = ({ imageURL, author, title}) => {
   return (
     <article>
       <Image src={imageURL} />
