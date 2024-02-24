@@ -30,7 +30,7 @@ const books = [
 
 const Book = (props) => {
   console.log(props)
-  const { imageURL, author, title} = props.popcorn;
+  const { imageURL, author, title} = props;
   return (
     <article>
       <Image src={imageURL} />
@@ -45,7 +45,7 @@ function BookList() {
     <>
      {books.map((book) => {
       return (
-        <Book key={book.id} popcorn={book}/>
+        <Book key={book.id} {...book} />
       )
      })}
     </>
