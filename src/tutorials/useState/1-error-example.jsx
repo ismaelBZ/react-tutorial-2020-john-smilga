@@ -1,7 +1,18 @@
+
+
 export default function ErrorExample() {
+
+  let data = 2222;
+  
+  const handleClick = () => {
+    console.log(data);
+    data = 3333;
+    console.log(data);
+  }
+
   return (
     <>
-      <h1>Running</h1>
+      <button onClick={ () => handleClick()}> {data} </button>
     </>
   );
 }
