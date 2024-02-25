@@ -6,12 +6,10 @@ const UseStateCounter = () => {
 
   const complexIncrease = () => {
     console.log(value + 1);
-    /* When we click multiple times, the value is assigned on click and stored in register 
-    for a fast computing, so the function will be executed the clicked ammount times with the
-    same value in an interval 
-     */
     setTimeout(() => {
-      setValue(value + 1);
+      setValue((previousValue) => { 
+        return previousValue + 1
+      });
     }, 1000 )
   }
 
