@@ -3,12 +3,12 @@ import { data } from "./../../data";
 
 const UseStateObject = () => {
   const [people, setPeople] = useState({
-    name: "john",
+    name: "John",
     age: 24,
     message: "random message",
   });
   const changePerson = () => {
-    setPeople('Peter')
+    setPeople({...people, name:'Peter'})
   }
   console.log(people);
   return (
