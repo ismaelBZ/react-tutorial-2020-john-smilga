@@ -1,5 +1,5 @@
 import React from 'react'
-import Setup from './tutorials/useState/5-useState-counter'
+import Setup from './tutorials/useEffect/1-useEffects-basics'
 
 const App = () => {
   return (
