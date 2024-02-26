@@ -1,14 +1,13 @@
 import { useState, useFetch } from "react";
-// shor-circuit evaluation
-// ternary operator
 
 const ShortCircuit = () => {
-  const [exists, setExists] = useState('Existe');
-  const [dontExists, setDontExists] = useState('')
+  const [text, setText] = useState('');
+  const [isError, setIsError] = useState(false)
   return (
     <>
-      <h2>{exists && 'O valor existe'}</h2> { /* Sei qua variável e quero renderizá-la caso contrario não quero renderizar nada */}
-      <h2>{dontExists || "Não existe um valor"}</h2> {/* Quero mostrar o valor da variável se ela existe se não um valor default */}
+      <h2>{text || 'Default value'}</h2>
+      <button className='btn' onClick={() => setTimeout((() => setIsError(!isError)), 500)}>Toogle Error</button>
+      {isError && <h1>Error...</h1>}
     </>
   );
 };
