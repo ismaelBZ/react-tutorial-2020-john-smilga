@@ -1,5 +1,5 @@
 import React from 'react'
-import Setup from './tutorials/useEffect/2-useEffect-cleanUp'
+import Setup from './tutorials/useEffect/3-useEffect-fetchData'
 
 const App = () => {
   return (
