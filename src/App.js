@@ -1,5 +1,5 @@
 import React from 'react'
-import Setup from './tutorials/conditionalRendering/2-short-circuit'
+import Setup from './tutorials/conditionalRendering/3-ternary-operator'
 
 const App = () => {
   return (
