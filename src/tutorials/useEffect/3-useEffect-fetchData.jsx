@@ -6,20 +6,33 @@ const UseEffectFetchData = () => {
   const [users, setUsers] = useState([]);
   useEffect( () => {
     getusers();
-  })
+  }, [])
 
   const getusers = async () => {
     const response = await fetch(url);
     const users = await response.json();
-    // setUsers(users) -> This will ocasionate an infinite loop
-    console.log(users);
+    setUsers(users)
     return users;
   };
 
   return (
     <>
       <h2>GitHub Users</h2>
-      <h3></h3>
+      <ul className='users'>
+        {users.map(({id, login, avatar_url, html_url}) => {
+          return (
+            <li key={id}>
+              <img src={avatar_url} alt={login} />
+              <div>
+                <h3>
+                  {login} 
+                </h3>
+                <a href={html_url}>Profile</a>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };
