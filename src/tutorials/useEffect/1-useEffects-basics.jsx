@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 export default function UseEffectBasics() {
   const [value, setValue] = useState(0);
 
-  // By default runs after every re-render
+  // By default runs after every render
   // cleanup function
   // second parameter
   useEffect(() => {
