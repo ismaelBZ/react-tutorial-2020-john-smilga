@@ -8,19 +8,22 @@ const UseEffectCleanUp = () => {
   }
   
   useEffect(() => {
-   
+   // 2 Second Step -> run useEffect
+   // END -> run the use efect again
     console.log('use effect')
     window.addEventListener('resize', checkSize);
     return () => {
+      // 4 Fourth Step -> Befor run useEffect again 
+      // execute the clen up function/useEffect.return
       console.log('cleanup');
       window.removeEventListener('resize', checkSize)
     }
   })
-  console.log('Outside render step: size = ' + size);
-
+  // START -> Render Ccomponent
+  // 3 Tirth Step -> Re-render 
+  console.log('Render');
   return (
     <>
-      {console.log('Inside render step: size = ' + size)}
       <h2>Window Size</h2>
       <h3>{size}</h3> 
     </>
