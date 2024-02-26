@@ -8,7 +8,7 @@ export default function UseEffectBasics() {
   // second parameter
   useEffect(() => {
     console.log('call useEffect')
-  }, [value]);
+  });
   console.log('render component');
   return(
     <>
