@@ -3,16 +3,12 @@ import { useState, useFetch } from "react";
 // ternary operator
 
 const ShortCircuit = () => {
-  const [text, setText] = useState('true');
-
-  /* short-circuit */
-  const firstValue = text && 'hello world' // text ? hello world : text 
-  const secondValue = text || 'hello world'; // text ? text : 'hello World'
-  
+  const [exists, setExists] = useState('Existe');
+  const [dontExists, setDontExists] = useState('')
   return (
     <>
-      <h2>First: {firstValue}</h2>
-      <h2>Second: {secondValue}</h2>
+      <h2>{exists && 'O valor existe'}</h2> { /* Sei qua variável e quero renderizá-la caso contrario não quero renderizar nada */}
+      <h2>{dontExists || "Não existe um valor"}</h2> {/* Quero mostrar o valor da variável se ela existe se não um valor default */}
     </>
   );
 };
