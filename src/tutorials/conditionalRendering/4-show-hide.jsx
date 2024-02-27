@@ -15,7 +15,6 @@ const Item = () => {
   }, []);
   return (
     <>
-     <h2>Window size:</h2>
      <h3>size: {size}</h3>
     </>
   )
