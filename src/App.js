@@ -1,5 +1,5 @@
 import React from 'react'
-import Setup from './tutorials/forms/1-controlled-inputs'
+import Setup from './tutorials/forms/2-multiple-inputs'
 
 const App = () => {
   return (
