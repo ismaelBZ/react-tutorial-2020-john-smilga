@@ -1,5 +1,5 @@
 import React from 'react'
-import Setup from './tutorials/conditionalRendering/3-ternary-operator'
+import Setup from './tutorials/conditionalRendering/4-show-hide'
 
 const App = () => {
   return (
