@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useState } from "react";
 
 const MultipleInputs = () => {
   const [people, setPeople] = useState([]);
@@ -9,9 +9,8 @@ const MultipleInputs = () => {
   const handleChange = (e) => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
-    setPerson({...person, [inputName]: inputValue})
-  }
-  
+    setPerson({ ...person, [inputName]: inputValue });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,33 +28,15 @@ const MultipleInputs = () => {
       <form className="form">
         <div className="form-control">
           <label htmlFor="name">Name: </label>
-          <input
-            type="text"
-            name="firstName"
-            id="fisrtName"
-            value={firstName}
-            onChange={handleChange}
-          />
+          <input type="text" name="firstName" id="fisrtName" value={firstName} onChange={handleChange} />
         </div>
         <div className="form-control">
           <label htmlFor="email">Email: </label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            value={email}
-            onChange={handleChange}
-          />
+          <input type="text" name="email" id="email" value={email} onChange={handleChange} />
         </div>
         <div className="form-control">
           <label htmlFor="age">Age: </label>
-          <input
-            type="text"
-            name="age"
-            id="age"
-            value={age}
-            onChange={handleChange}
-          />
+          <input type="text" name="age" id="age" value={age} onChange={handleChange} />
         </div>
         <button type="submit" onClick={handleSubmit}>
           Send
