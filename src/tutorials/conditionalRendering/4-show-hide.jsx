@@ -1,13 +1,28 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
-const ShowHide = () => {
-  const [isActive, setIsActive] = useState(false)
+const Item = () => {
+  const [size, setSize] = useState(window.innerWidth);
+  const checkSize = () => {
+    window.addEventListener('resize', setSize(window.innerWidth))
+  }
+  useEffect(() => {
+    window.addEventListener('resize', checkSize);
+  }, [])
+  return (
+    <>
+     <h2>Window size:</h2>
+     <h3>size: {size}</h3>
+    </>
+  )
+}
 
+const ShowHide = () => {  
+  const [show, setShow] = useState(false)
   return (
     <>
       <h2>Something hide above!</h2>
-      {isActive && <h3>I'm not hide anymore</h3>}
-      <button className='btn' onClick={() => setIsActive(!isActive)}>{isActive ? 'Hide' : 'Show'}</button>
+      {show && <Item />}
+      <button className='btn' onClick={() => setShow(!show)}>{show ? 'Hide' : 'Show'}</button>
     </>
   )
 }
