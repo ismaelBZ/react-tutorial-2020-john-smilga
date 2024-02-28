@@ -17,6 +17,12 @@ const reducer = (state, action) => {
     return {
       ...defaultState,
     };
+  } else if (action.type === "NO_VALUE") {
+    return {
+      ...state, 
+      isModalOpen: true,
+      modalContent: 'Please Insert Item'
+    };
   }
   throw new Error("NO REDUCERT ACTION TYPE MATCHING");
 };
@@ -33,12 +39,14 @@ const UseReducer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name) {
+    if (name.toUpperCase() === "TEST") {
+      dispatch({ type: "TEST", payload: "testing" });
+    } else if (name) {
       const newItem = { id: new Date().getTime().toString(), name };
       dispatch({ type: "ADD_ITEM", payload: newItem });
       setName("");
     } else {
-      dispatch({ type: "TEST", payload: "testing" });
+      dispatch({ type: "NO_VALUE" });
     }
   };
 
