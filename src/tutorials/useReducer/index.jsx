@@ -2,29 +2,23 @@ import { useState, useReducer } from "react";
 import { Modal } from "./Modal";
 import { data } from "./../../data";
 
-/* AS THE APP GROW WE NEED SOME KIND OF BETTER STRUCTURE TO STATE*/
-// It allow to do some intermediate steps, different from useState, where we just change the data
-// I undestand that is indicated for projects where we have much useState
-
-// Commonly called reducer = (stated, action) => {}
-const reducerFunction = (currentState, activatingAction) => {
+const reducer = (state, action) => {
   // EVER we have to return an state, because all our application is based on a state
-  if (activatingAction.type === "ADD_ITEM") {
-    console.log(currentState, activatingAction)
-    const currentPeople = [...currentState.people, activatingAction.payload]
-    return  {
-      ...currentState,
+  if (action.type === "ADD_ITEM") {
+    const currentPeople = [...state.people, action.payload];
+    return {
+      ...state,
       people: currentPeople,
       isModalOpen: true,
-      modalContent: 'Item added!',
-    }
-  } else if (activatingAction.type === "TEST") {
-      console.log(currentState, activatingAction)
-      return {
-        ...defaultState
-      }
+      modalContent: "Item added!",
+    };
+  } else if (action.type === "TEST") {
+    console.log(state, action);
+    return {
+      ...defaultState,
+    };
   }
-  throw new Error('NO REDUCERT ACTION TYPE MATCHING')
+  throw new Error("NO REDUCERT ACTION TYPE MATCHING");
 };
 
 const defaultState = {
@@ -35,39 +29,37 @@ const defaultState = {
 
 const UseReducer = () => {
   const [name, setName] = useState("");
-  // It's a common practice to use [currentState, dispatch] / i used just to see that can be everything
-  const [currentState, activeReducer] = useReducer(reducerFunction, defaultState);
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name) {
-      const newItem = {id: new Date().getTime().toString(), name}
-      // activeReducer or commonly called dispatch is an function that has an object with property of type, and commonly value is in uppercase
-      activeReducer({ type: "ADD_ITEM",  payload: newItem});
-      setName('')
+      const newItem = { id: new Date().getTime().toString(), name };
+      dispatch({ type: "ADD_ITEM", payload: newItem });
+      setName("");
     } else {
-      activeReducer({ type: "TEST",  payload: 'testing'});
+      dispatch({ type: "TEST", payload: "testing" });
     }
   };
 
   return (
-      <>
-        {currentState.isModalOpen && <Modal modalContent={currentState.modalContent} />}
-        <form className="form" onSubmit={handleSubmit}>
-          <div>
-            <input type="text" name="" id="" value={name} onChange={(e) => setName(e.target.value)} />
-          </div>
-          <button type="submit" className="btn">
-            submit
-          </button>
-        </form>
-        {currentState.people.map(({ id, name }) => (
-          <h2 key={id} style={{ fontSize: "1.25rem" }}>
-            {name}
-          </h2>
-        ))}
-      </>
-    );
-  };
+    <>
+      {state.isModalOpen && <Modal modalContent={state.modalContent} />}
+      <form className="form" onSubmit={handleSubmit}>
+        <div>
+          <input type="text" name="" id="" value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+        <button type="submit" className="btn">
+          submit
+        </button>
+      </form>
+      {state.people.map(({ id, name }) => (
+        <h2 key={id} style={{ fontSize: "1.25rem" }}>
+          {name}
+        </h2>
+      ))}
+    </>
+  );
+};
 
 export default UseReducer;
