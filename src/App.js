@@ -1,5 +1,5 @@
 import React from 'react'
-import Setup from './tutorials/useReducer'
+import Setup from './tutorials/propDrilling'
 
 const App = () => {
   return (
