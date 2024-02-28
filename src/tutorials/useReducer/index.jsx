@@ -8,8 +8,15 @@ import { data } from "./../../data";
 
 const reducerFunction = (currentState, activatingAction) => {
   // EVER we have to return an state, because all our application is based on a state
-  console.log(currentState, activatingAction);
-  return currentState
+  if (activatingAction.type === "TESTING") {
+    return  {
+      ...currentState,
+      people: data,
+      isModalOpen: true,
+      modalContent: 'Using reducer alternative state',
+    }
+  }
+  throw new Error('NO REDUCERT ACTION TYPE MATCHING')
 };
 
 const defaultState = {
@@ -29,6 +36,7 @@ const UseReducer = () => {
       // activeReducer or commonly called dispatch is an function that has an object with property of type, and commonly value is in uppercase
       activeReducer({ type: "TESTING" });
     } else {
+      activeReducer({ type: "RANDOM" });
     }
   };
 
