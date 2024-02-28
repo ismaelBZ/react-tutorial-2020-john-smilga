@@ -4,6 +4,15 @@ import { data } from "./../../data";
 
 const reducer = (state, action) => {
   // EVER we have to return an state, because all our application is based on a state
+
+  if (action.type === "NO_VALUE") {
+    return {
+      ...state,
+      isModalOpen: true,
+      modalContent: "Please Insert Item",
+    };
+  }
+
   if (action.type === "ADD_ITEM") {
     const currentPeople = [...state.people, action.payload];
     return {
@@ -12,16 +21,24 @@ const reducer = (state, action) => {
       isModalOpen: true,
       modalContent: "Item added!",
     };
-  } else if (action.type === "TEST") {
+  }
+
+  if (action.type === "REMOVE_ITEM") {
+    const newPeople = state.people.filter((person) => person.id !== action.payload);
+    return {
+      ...state,
+      people: newPeople
+    }
+  }
+
+  if (action.type === "CLOSE_MODAL") {
+    return { ...state, isModalOpen: false, modalContent: "" };
+  }
+
+  if (action.type === "TEST") {
     console.log(state, action);
     return {
       ...defaultState,
-    };
-  } else if (action.type === "NO_VALUE") {
-    return {
-      ...state, 
-      isModalOpen: true,
-      modalContent: 'Please Insert Item'
     };
   }
   throw new Error("NO REDUCERT ACTION TYPE MATCHING");
@@ -50,9 +67,13 @@ const UseReducer = () => {
     }
   };
 
+  const closeModal = () => {
+    dispatch({ type: "CLOSE_MODAL" });
+  };
+
   return (
     <>
-      {state.isModalOpen && <Modal modalContent={state.modalContent} />}
+      {state.isModalOpen && <Modal closeModal={closeModal} modalContent={state.modalContent} />}
       <form className="form" onSubmit={handleSubmit}>
         <div>
           <input type="text" name="" id="" value={name} onChange={(e) => setName(e.target.value)} />
@@ -62,9 +83,14 @@ const UseReducer = () => {
         </button>
       </form>
       {state.people.map(({ id, name }) => (
-        <h2 key={id} style={{ fontSize: "1.25rem" }}>
-          {name}
-        </h2>
+        <div key={id} className='item'>
+          <h2 style={{ fontSize: "1.25rem" }}>
+            {name}
+          </h2>
+          <button type="button" className="btn" onClick={() => dispatch({ type: "REMOVE_ITEM", payload: id })}>
+            Remove
+          </button>
+        </div>
       ))}
     </>
   );
