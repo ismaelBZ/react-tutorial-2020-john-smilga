@@ -6,15 +6,23 @@ import { data } from "./../../data";
 // It allow to do some intermediate steps, different from useState, where we just change the data
 // I undestand that is indicated for projects where we have much useState
 
+// Commonly called reducer = (stated, action) => {}
 const reducerFunction = (currentState, activatingAction) => {
   // EVER we have to return an state, because all our application is based on a state
-  if (activatingAction.type === "TESTING") {
+  if (activatingAction.type === "ADD_ITEM") {
+    console.log(currentState, activatingAction)
+    const currentPeople = [...currentState.people, activatingAction.payload]
     return  {
       ...currentState,
-      people: data,
+      people: currentPeople,
       isModalOpen: true,
-      modalContent: 'Using reducer alternative state',
+      modalContent: 'Item added!',
     }
+  } else if (activatingAction.type === "TEST") {
+      console.log(currentState, activatingAction)
+      return {
+        ...defaultState
+      }
   }
   throw new Error('NO REDUCERT ACTION TYPE MATCHING')
 };
@@ -33,10 +41,12 @@ const UseReducer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name) {
+      const newItem = {id: new Date().getTime().toString(), name}
       // activeReducer or commonly called dispatch is an function that has an object with property of type, and commonly value is in uppercase
-      activeReducer({ type: "TESTING" });
+      activeReducer({ type: "ADD_ITEM",  payload: newItem});
+      setName('')
     } else {
-      activeReducer({ type: "RANDOM" });
+      activeReducer({ type: "TEST",  payload: 'testing'});
     }
   };
 
