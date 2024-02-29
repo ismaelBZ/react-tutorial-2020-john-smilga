@@ -21,25 +21,24 @@ const ContextAPI = () => {
   }
 
   return (
-    <PersonContext.Provider value={removePerson}>
+    <PersonContext.Provider value={{removePerson, people}}>
       <h2>ContextAPI</h2>
-      <List people={people} />
+      <List />
     </PersonContext.Provider>
   )
 }
 
-const List = ({people}, removePerson) => {
+const List = () => {
+  const {people: peopleData} = useContext(PersonContext)
   return (
     <>
-      {people.map(person => <Person {...person} /> )}
+      {peopleData.map(person => <Person {...person} /> )}
     </>
   )
 }
 
 const Person = ({name, id}) => {
-  const removePerson = useContext(PersonContext);
-  console.log(removePerson);
-  console.log()
+  const {removePerson} = useContext(PersonContext);
   return (
     <div key={id} className='item'>
       <h2>{name}</h2>
