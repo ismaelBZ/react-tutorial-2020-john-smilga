@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 // Custom hooks every has to start with use
 
 const useFetch = (url) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const getData = async () => {
@@ -13,7 +13,7 @@ const useFetch = (url) => {
     setIsLoading(false);
   };
 
-  useEffect(() => {getData()}, []);
+  useEffect(() => {getData()}, [url]);
 
   return { data, isLoading };
 };

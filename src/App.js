@@ -1,5 +1,5 @@
 import React from 'react'
-import Setup from './tutorials/customHooks/1-fetch-exemple'
+import Setup from './tutorials/prop-types'
 
 const App = () => {
   return (
