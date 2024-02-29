@@ -5,7 +5,6 @@ const url = "https://course-api.com/react-prop-types-example"
 
 const PropTypes = () => {
   const {data: products} = useFetch(url);
-  console.log(products);
   return (
     <>
       <h2>Product</h2>

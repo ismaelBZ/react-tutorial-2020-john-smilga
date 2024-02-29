@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types'
 
 const Product = ({image, name, price}) => {
-  console.log(image, name, price)
   return (
     <article className='product'>
       <img src={image.url} alt={name} />
@@ -9,5 +9,11 @@ const Product = ({image, name, price}) => {
     </article>
   );
 };
+
+Product.propTypes = {
+  image: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired
+}
 
 export default Product;
